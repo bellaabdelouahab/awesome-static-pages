@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: -1;
+}
+
+.bg::before {
+  --s: 8.8vw; /* the size */
+  --g: 0.25vw; /* the gap */
+  --r: 0.5vw; /* the radius */
+
+  content: "";
+  position: fixed;
+  inset: var(--g);
+  --_g: radial-gradient(var(--r) at var(--r) var(--r), #000 98%, #0000);
+  --_o: calc(-2 * var(--r) - var(--g));
+  -webkit-mask: var(--_g), var(--_g) var(--_o) 0, var(--_g) 0 var(--_o),
+    var(--_g) var(--_o) var(--_o),
+    conic-gradient(at calc(var(--s) - 2 * var(--r)) var(--s), #0000 75%, #000 0)
+      var(--r) 0,
+    conic-gradient(at var(--s) calc(var(--s) - 2 * var(--r)), #0000 75%, #000 0)
+      0 var(--r);
+  -webkit-mask-size: calc(var(--s) + var(--g)) calc(var(--s) + var(--g));
+  background: linear-gradient(45deg, #343837, #343837);
+  z-index: -1;
+}
+.bg::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: fixed;
+  z-index: -10;
+  /* create a moving background from top to bottom  with a blur on edges */
+    background: linear-gradient(45deg, transparent,red);
+    animation: move 5s linear infinite;
+    filter: blur(100px);
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-100%) translateY(100%);
+  }
+  100% {
+    transform: translateX(100%) translateY(-100%);
+  }
+}
+
+
+.container {
+  width: 40%;
+  height: 50%;
+  padding: 20px;
+  background: #1d1e22;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.container .login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+/* 
+<div class="login-box">
+                <h2>Login</h2>
+                <form  method="post">
+                    <div class="user-box">
+                        <input type="text" name="username" required="">
+                        <label>Username</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="password" required="">
+                        <label>Password</label>
+                    </div>
+                    <button type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Submit
+                    </button>
+                </form>
+     
+                </div>
+*/
+
+.login-box h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.login-box form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-box .user-box {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -18px;
+  left: 0;
+  color: #03a9f4;
+  font-size: 12px;
+}
+
+.login-box button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 20px;
+  letter-spacing: 4px;
+  border: 2px solid #03a9f4;
+  background: transparent;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background: #03a9f4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03a9f4, 0 0 10px #03a9f4, 0 0 15px #03a9f4;
+}
